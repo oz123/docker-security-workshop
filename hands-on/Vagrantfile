@@ -60,9 +60,10 @@ function prepare_bocker() {
 }
 
 function get_go112() {
-    add-apt-repository ppa:gophers/archive
+    add-apt-repository ppa:longsleep/golang-backports
     apt-get update
-    apt-get install golang-1.12-go
+    apt-get install -y golang-1.12-go
+    echo "export PATH=\\$PATH:/usr/lib/go-1.12/bin/" >> /home/vagrant/.bashrc
 }
 
 function get_dive() {
@@ -73,6 +74,7 @@ function get_dive() {
 get_docker
 get_tools
 get_undocker
+get_go112
 get_dive
 # prepare_bocker
 SCRIPT
