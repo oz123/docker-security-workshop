@@ -1,0 +1,6 @@
+Demonstrate usage of AppArmor with Docker
+-----------------------------------------
+
+Execute each target in the make file from top to bottom.
+Read the comments inside the Makefile to understand what is expected.
+

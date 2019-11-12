@@ -1,0 +1,10 @@
+# Last Modified: Tue Nov 12 09:57:42 2019
+#include <tunables/global>
+
+/home/vagrant/go/src/apparmor/server {
+  #include <abstractions/base>
+  #include <abstractions/lxc/container-base>
+
+  deny /bin/cat x,
+
+}
