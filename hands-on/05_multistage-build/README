@@ -1,0 +1,10 @@
+Demonstrate multistage build
+============================
+
+Inspect the Dockerfile.
+
+Think what can be improved in the file.
+
+- Fix the file.
+- Create a multistage build for your a project in your favourite programming
+  language.
