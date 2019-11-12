@@ -22,13 +22,17 @@ oops-i-did-it-again:
 	curl 127.0.0.1:1323/hack2 && echo "\nOOPS!!! Something happend, which should not"
 
 
-genrate-apparmor:
+genrate-apparmor:  # manually create a new profile
 	sudo aa-genprof ./server
 	# in a different window
 	# curl localhost:1323 - allow
 	# curl localhost:1323/hack deny
 	# finish the server, answer the questions to create apparmor profile
 	# now start the server again, / should work, /hack should not
+
+install-apparmour:  # install a pre existing profile
+	sudo cp -v home.vagrant.go.src.apparmor.server /etc/apparmor.d/
+	sudo systemctl restart
 
 docker-run-with-apparmor:
 	docker run -it --name apparmor --rm -p 127.0.0.1:1323:1323 --rm --security-opt apparmor="/home/vagrant/go/src/apparmor/server" noris.de/apparmor:demo
