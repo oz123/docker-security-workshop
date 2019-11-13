@@ -4,7 +4,8 @@
 $script = <<SCRIPT
 export DOCKER_VERSION=18.06
 export DEBIAN_FRONTEND="noninteractive"
-export TRANSPORT_PACKAGES="apt-transport-https ca-certificates software-properties-common"
+export TRANSPORT_PACKAGES="apt-transport-https ca-certificates software-properties-common wget apt-transport-https gnupg lsb-release"
+
 export DEBUG_PACKAGES="jq dnsutils tcpdump curl netcat openssl nmap iputils-ping traceroute busybox apparmor-utils"
 
 echo "console-setup  console-setup/charmap47 select  UTF-8" > encoding.conf
@@ -71,11 +72,19 @@ function get_dive() {
     dpkg -i dive_0.9.1_linux_amd64.deb
 }
 
+function get_trivy() {
+    wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+    echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+    apt-get update
+    apt-get install -y trivy
+}
+
 get_docker
 get_tools
 get_undocker
 get_go112
 get_dive
+get_trivy
 # prepare_bocker
 SCRIPT
 
