@@ -1,0 +1,6 @@
+TRIVY
+=====
+
+Run a scan on the image build from the files.
+
+Run make <target> to build the images.
